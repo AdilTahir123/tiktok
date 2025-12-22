@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Engine</title>
+</head>
+<body>
+    <h1>Search Images Here</h1>
+    <form action="">
+      <input type="text" placeholder="write any keyword" id="input12">
+      <button id="submitted" >
+        Submit
+      </button>
+    </form>
+    <div class="result">
+
+    </div>
+    <script>
+      const result1=document.querySelector('.result');
+      let input2=document.getElementById('input12');
+      let submits=document.getElementById('submitted');
+      let ApiKey='jfAFf0CpRwAwhIK9XqH5Yt11mGhh80P_aeSv7La6C-g';
+      let keyword='';
+      let page=1;
+      async function fetchApi(){
+         keyword=input2.value.trim();
+        const url=`https://api.unsplash.com/search/photos?page=${page}&query=${keyword}&client_id=${ApiKey}`;
+        let fetches=await fetch(url);
+        let res=await fetches.json();
+        const data=res.results;
+data.forEach((image1) => {
+          let image=document.createElement('img');
+        image.src=image1.urls.small;
+        result1.appendChild(image);
+});  
+      }
+submits.addEventListener('click',(e)=>{
+  e.preventDefault();
+  fetchApi();
+})
+input2.addEventListener('keypress',()=>{
+  if(e.key==='Enter'){
+    submits.click();
+  }
+})
+    </script>
+</body>
+</html>

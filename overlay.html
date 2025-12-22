@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OverLay</title>
+</head>
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }  
+    html, body {
+      height: 100%;
+      width: 100%;
+      position: relative;
+    }
+    .heading{
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        left: -100%;
+        background: red;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 2s ease;
+    }
+    .show{
+        left: 0;
+    }
+    #btn{
+        position: absolute;
+        top: 10px;
+        padding: 13px 20px;
+        outline: none;
+        border: none;
+        margin: 10px;
+        border-radius: 10px;
+        background: green;
+        color: white;
+        font-size: larger;
+    }
+</style>
+<body>
+    <h1 class="heading">Count</h1>
+    <button id="btn">Add To Cart</button>  
+    <script>
+        let btn=document.getElementById('btn');
+        let heading=document.querySelector('.heading');
+        let count=0;
+        btn.addEventListener('click',()=>{
+            count++;
+           heading.classList.toggle('show'); 
+           heading.innerHTML=`count=${count}`;
+        })
+    </script> 
+</body>
+</html>

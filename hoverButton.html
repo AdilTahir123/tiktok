@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button</title>
+</head>
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      background: gray;
+      align-items: center;
+      justify-content: center;
+    }
+    button{
+        padding: 13px 30px;
+        border: 2px solid red;
+        background: transparent;
+        font-size: medium;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        color: white;
+    }
+    button::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: red;
+    z-index: -1;
+    transition: 0.6s ease;
+
+    }
+    button:hover::after{
+        width: 100%;
+    }
+</style>
+<body>
+<button>Adil</button>    
+</body>
+</html>

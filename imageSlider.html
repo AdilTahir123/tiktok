@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Slider</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  } 
+  html, body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .container{
+    max-width: 600px;
+    height: 250px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+  }
+  .slides{
+    display: flex;
+    align-items: center;
+    width: 1800px;
+  }
+  .slider{
+    width: 600px;
+    height: 250px;
+    object-fit: cover;
+  }
+  button{
+    position: absolute;
+    top: 50%;
+    padding: 10px 14px;
+    border: none;
+    color: white;
+    background: rgb(130, 208, 12);
+    font-size: large;
+    cursor: pointer;
+  }
+  #next1{ right: 10px; }
+  #prev1{ left: 10px; }
+
+  .count{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    padding: 5px 10px;
+  }
+
+  .imm{
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .clickk img{
+    width: 50px;
+    height: 50px;
+    margin: 0 3px;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+
+  .activeThumb{
+    border: 2px solid red;
+    border-radius: 50%;
+    transform: scale(1.2);
+  }
+</style>
+<body>
+
+  <div class="container">
+    <div class="slides">
+      <img src="https://picsum.photos/id/1019/600/250" class="slider">
+      <img src="https://picsum.photos/id/1020/600/250" class="slider">
+      <img src="https://picsum.photos/id/1021/600/250" class="slider">
+    </div>
+
+    <button id="prev1">Prev</button>
+    <button id="next1">Next</button>
+
+    <div class="count">1</div>
+
+    <div class="imm">
+      <div class="clickk"></div>
+    </div>
+  </div>
+
+<script>
+  let slideBox = document.querySelectorAll('.slider');
+  let slides = document.querySelector('.slides');
+  let total = slideBox.length;
+
+  let prev = document.getElementById('prev1');
+  let next = document.getElementById('next1');
+  let count = document.querySelector('.count');
+
+  let clickk = document.querySelector('.clickk');
+
+  let index = 0;
+
+  // Thumbnail images
+  const images = [
+    'https://picsum.photos/id/1019/50/50',
+    'https://picsum.photos/id/1020/50/50',
+    'https://picsum.photos/id/1021/50/50'
+  ];
+
+  // Update slider
+  function update(){
+    slides.style.transform = `translateX(-${index * 600}px)`;
+    slides.style.transition = '1s';
+    count.innerHTML = index + 1;
+
+    // Remove old active border
+    document.querySelectorAll(".clickk img").forEach(img => {
+      img.classList.remove("activeThumb");
+    });
+
+    // Add active border
+    document.querySelectorAll(".clickk img")[index].classList.add("activeThumb");
+  }
+
+  // Next Slide
+  function nextSlide(){
+    index++;
+    if(index == total) index = 0;
+    update();
+  }
+
+  // Previous Slide
+  function prevSlide(){
+    index--;
+    if(index < 0) index = total - 1;
+    update();
+  }
+
+  // Load thumbnails
+  images.forEach((imgg, i)=>{
+    let imagee = document.createElement('img');
+    imagee.src = imgg;
+
+    imagee.addEventListener("click", ()=> {
+      index = i;
+      update();
+    });
+
+    clickk.appendChild(imagee);
+  });
+
+  // Button events
+  next.addEventListener('click', nextSlide);
+  prev.addEventListener('click', prevSlide);
+
+  update();
+</script>
+
+</body>
+</html>

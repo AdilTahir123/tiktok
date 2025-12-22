@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mousemove Effect</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:sans-serif; 
+  }
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+  i{
+    position: absolute;
+    padding: 20px;
+    border-radius: 50%;
+    color: white;
+    pointer-events: none;
+    animation: move 2s ease;
+  }
+  @keyframes move {
+    from{
+      transform: scale(2);
+    }
+    to{
+      transform: translate(var(--x),var(--y)) scale(0);
+      opacity: 0;
+    }
+    
+  }
+</style>
+<body>
+  
+  <script>
+const spark=(e)=>{
+  let i=document.createElement('i');
+  i.style.top=(e.pageY)+'px';
+  i.innerText='Adil';
+  i.style.left=(e.pageX)+'px';
+  const color=`hsl(${Math.random()*360},100%,50%)`;
+  i.style.background=color;
+  i.style.transition='2s ease';
+  document.body.style.background=color;
+  i.style.setProperty('--x',RandomValue());
+  i.style.setProperty('--y',RandomValue());
+  document.body.appendChild(i);
+  setTimeout(()=>{
+    i.remove();
+  },500);
+}
+const RandomValue=()=>{
+  return `${Math.random()*200-100}px`;
+}
+
+document.addEventListener('mousemove',spark);
+  </script>
+</body>
+</html>

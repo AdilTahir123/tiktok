@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whatsapp Page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <base href="https://picsum.photos/id/" />
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 6px;
+      padding: 13px;
+    }
+    .up {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    ul {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+    ul li {
+      list-style: none;
+    }
+    .fa-camera,
+    .fa-ellipsis-vertical {
+      cursor: pointer;
+      font-size: larger;
+    }
+    .search-bar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .search-bar input {
+      flex: 1;
+      font-size: medium;
+      border-radius: 20px;
+      padding: 15px 40px;
+      border: none;
+      outline: none;
+      background: #f5f5f5;
+    }
+    input:focus{
+      border:2px solid gray;
+    }
+    .fa-magnifying-glass {
+      position: absolute;
+      left: 13px;
+      top: 15px;
+      color: gray;
+    }
+    video {
+      width: 100%;
+      display: none;
+      max-width: 400px;
+      margin: 0 auto;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card {
+      display: flex;
+      gap: 10px;
+      padding: 8px 10px;
+    }
+    .card:hover{
+      background: rgb(207, 205, 205);
+    }
+    .card img {
+      border-radius: 50%;
+    }
+    .card .data {
+      padding-top: 8px;
+    }
+    .tabs {
+      padding-top: 16px;
+    }
+    .tabs .active,footer ul li i.active {
+      background: rgb(234, 229, 229);
+    }
+    .content{
+      display: none;
+    }
+    .content.active{
+      display: block;
+    }
+
+    nav button {
+      padding: 6px 8px;
+      border-radius: 14px;
+      border: 1px solid gray;
+      background: transparent;
+      margin-left: 4px;
+      cursor: pointer;
+    }
+    .tabs button:hover {
+      background: rgb(238, 235, 235);
+    }
+    main {
+   /* space for footer */
+  overflow-y: auto;
+  height: calc(100vh - 180px); /* adjust header+tabs height */
+}
+
+footer ul {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  border-top: 2px solid rgb(213, 211, 211);
+  background: white;
+  padding-top: 5px;
+  padding-bottom: 6px;
+}
+footer ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: rgb(58, 57, 57)
+  ;
+}
+footer ul li i { font-size: 20px; margin-bottom: 1px; padding: 7px 16px; border-radius: 30px; cursor: pointer; }
+footer ul li i:hover{
+  background: rgb(241, 239, 239);
+}
+@media (max-width:550px) {
+  footer ul{
+    bottom: 30px;
+  } 
+}
+  </style>
+  <body>
+    <header>
+      <nav>
+        <div class="up">
+          <h1>WhatsApp</h1>
+          <ul>
+            <li><i id="camera-input" class="fa-solid fa-camera"></i></li>
+            <li><i class="fa-solid fa-ellipsis-vertical"></i></li>
+          </ul>
+        </div>
+        <div class="search-bar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search.." />
+        </div>
+        <div class="tabs">
+          <button class="tab active">All</button>
+          <button class="tab">Unread</button>
+          <button class="tab">Favourites</button>
+          <button class="tab">Groups</button>
+        </div>
+      </nav>
+      <video id="cameraVideo" autoplay playsinline></video>
+    </header>
+
+    <main>
+      <div class="cards">
+      </div>
+    </main>
+    <footer>
+      <ul>
+        <li>
+          <i class="fa-solid fa-comment-dots active"></i>
+          <p>Chats</p>
+        </li>
+        <li>
+          <i class="fa-solid fa-phone"></i>
+          <p>Calls</p>
+        </li>
+        <li>
+          <i class="fa-solid fa-clock"></i>
+          <p>Updates</p>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-gear"></i>
+          <p>Tools</p>
+        </li>
+      </ul>
+    </footer>
+    <script>
+      const camera = document.getElementById("camera-input");
+      const video = document.getElementById("cameraVideo");
+      camera.addEventListener("click", async () => {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+          });
+          video.srcObject = stream;
+          video.style.display = "block";
+        } catch (err) {
+          alert("camera access denied or not available");
+          console.log(err);
+        }
+      });
+      const cards = document.querySelector(".cards");
+      const data = [
+        {
+          image: "10/50/50",
+          name: "Adil",
+          msg: "how are you",
+          type:"Favourites"
+        },
+        {
+          image: "20/50/50",
+          name: "Uzair",
+          msg: "beautiful",
+          type:"Groups"
+        },
+        {
+          image: "30/50/50",
+          name: "Taimoor",
+          msg: "thanks Bro",
+          type:"Groups"
+        },
+        {
+          image: "40/50/50",
+          name: "Arslan",
+          msg: "So Lucky",
+          type:"All"
+        },
+        {
+          image: "50/50/50",
+          name: "Ahmed",
+          msg: "So Great",
+          type:"Unread"
+        },
+        {
+          image: "60/50/50",
+          name: "Hamid",
+          msg: "Beautiful",
+          type:"Favourites"
+        },
+      ];
+      function show(person) {
+        let div = document.createElement("div");
+        div.classList.add("card");
+        div.innerHTML = `
+            <img src="${person.image}" alt="img">
+          <div class="data">
+            <h3>${person.name}</h3>
+            <p>${person.msg}</p>
+          </div>`;
+         div.addEventListener('click',()=>{
+          alert("Welcome "+person.name+' '+person.msg);
+         })
+        cards.appendChild(div);
+      }
+      data.forEach((d) => show(d));
+      //tabs logic
+      let tabs=document.querySelectorAll('.tab');
+      let contents=document.querySelectorAll('.content');
+
+      tabs.forEach((t,i)=>{
+        t.addEventListener('click',()=>{
+               tabs.forEach((tab)=>tab.classList.remove('active'));
+        t.classList.add('active');
+        cards.innerHTML='';
+        let type=t.textContent;
+        data.filter(d=>type==="All"?true:d.type===type).forEach(show);
+        contents.forEach((c)=>c.classList.remove('active'));
+        contents[i].classList.add('active');
+      })
+        });
+        //footer tabs
+        const footerIcons=document.querySelectorAll('footer ul li i');
+footerIcons.forEach(icon=>{
+icon.addEventListener('click',()=>{
+footerIcons.forEach(ic=>ic.classList.remove('active'));
+icon.classList.add('active');
+});
+});
+
+          //search functionality
+          const searchInput = document.querySelector('.search-bar input');
+searchInput.addEventListener('input', () => {
+  const value = searchInput.value.toLowerCase();
+  cards.innerHTML = '';
+  data.filter(d => d.name.toLowerCase().includes(value)).forEach(show);
+});
+
+    
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+</head>
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family:sans-serif; 
+    }
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+    .container{
+        max-width: 400px;
+        height: 250px;
+        background: red;
+        position: relative;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .slides{
+        width: 1200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .slides img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    button{
+        position: absolute;
+        font-size: larger;
+        top: 50%;
+        cursor: pointer;
+    }
+    .next{
+      right: 10px;
+    }
+    .prev{
+        left: 10px;
+    }
+    .count{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: white;
+        background: green;
+        padding: 10px;
+        border-radius: 50%;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="slides">
+            <img src="https://picsum.photos/id/1045/400/250" alt="img1">
+            <img src="https://picsum.photos/id/1050/400/250" alt="img2">
+            <img src="https://picsum.photos/id/1055/400/250" alt="img3">
+        </div>
+        <button class="prev" onclick="prewSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+        <div class="count">1</div>
+    </div>
+    <script>
+
+        let slides=document.querySelector('.slides');
+        let total=slides.children.length;
+        let count=document.querySelector('.count');
+        let index=0;
+        function updateSlide(){
+            slides.style.transform=`translateX(-${index*400}px)`;
+            slides.style.transition='2s linear';
+            count.innerHTML= `${index+1}/${total}`
+
+        }
+        function nextSlide(){
+            index=(index+1)%total;
+            updateSlide();
+        }
+        function prewSlide(){
+            index=(index-1+total)%total;
+            updateSlide();
+        }
+        setInterval(() => {
+            index=(index+1)%total;
+            updateSlide();
+        }, 3000);
+    </script>
+</body>
+</html>

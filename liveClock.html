@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clock</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+  
+  html, body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: xx-large;
+    color: red;
+  }
+</style>
+<body>
+  <div class="timer">
+    00:00:00
+  </div>
+  <script>
+    let timer=document.querySelector('.timer');
+    function showTime(){
+      let cTime=new Date();
+      timer.innerHTML=cTime.toLocaleString();
+    }
+    setInterval(showTime,1000);
+  </script>
+</body>
+</html>

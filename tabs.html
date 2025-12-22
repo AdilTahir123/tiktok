@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabs Logic</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:sans-serif; 
+  }
+  html, body {
+    height: 100%;
+    width: 100%;
+    background: #f4f4f4;
+  }
+  .tabs{
+    display: flex;
+    gap: 20px;
+    margin: 10px;
+  }
+  button{
+    padding: 10px 20px;
+    background:white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: medium;
+  }
+  .content{
+    margin: 15px;
+    font-size: large;
+    background: white;
+    color: red;
+    display: none;
+    padding: 20px;
+    animation: move 2s ease;
+  }
+  .tabContent{
+    background: white;
+  }
+  @keyframes move {
+    from{
+      transform: translateX(-30px);
+      opacity: 0;
+    }
+    to{
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  .content.active{
+    display: block;
+  }
+  .tab.active{
+    background: red;
+    color: white;
+  }
+  button.tab{
+    transition:background 1s ;
+  }
+</style>
+<body>
+  <div class="tabs">
+      <button class="tab active">HTML</button>
+      <button class="tab">CSS</button>
+      <button class="tab">JAVASCRIPT</button>
+  </div>
+  <div class="tabContent">
+    <p class="content active">HyperText Markup Language For Structure</p>
+    <p class="content">Cascading Style Sheet For Styling</p>
+    <p class="content">JAVASCRIPT fort Interactivity </p>
+  </div>
+  <script>
+    let tabs=document.querySelectorAll('.tab');
+    let contents=document.querySelectorAll('.content');
+
+    tabs.forEach((tab,i)=>{
+      tab.addEventListener('click',()=>{
+
+        tabs.forEach((t)=>t.classList.remove('active'));
+        contents.forEach((c)=>c.classList.remove('active'));
+
+        tab.classList.add('active');
+        contents[i].classList.add('active');
+
+
+      })
+    })
+  </script>
+</body>
+</html>
