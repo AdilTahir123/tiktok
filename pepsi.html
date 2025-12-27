@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pepsi Animation</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif; 
+}
+html, body {
+  height: 100vh;
+  width: 100vw;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.circle{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background:black;
+  box-shadow: 0px 0px 100px rgb(1, 132, 254);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 1s ease-in-out;
+}
+.circle::after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: transparent;
+  border: 4px solid rgba(1, 97, 252, 0.992);
+  box-shadow: 0px 0px 20px rgb(1, 132, 254);
+}
+.icons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 3px;
+  height: 100%;
+}
+.icons img{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.circle h3{
+  color : rgb(46, 171, 234);
+  font-size: 30px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.rectangle{
+  width: 400px;
+  border-radius: 10px;
+  height: 300px;
+  position: absolute;
+  z-index: -1;
+  background: rgb(12, 172, 247);
+  opacity: 0; 
+  transition: all 1s ease;
+  box-shadow: 0px 0px 50px rgb(1, 132, 254);
+}
+.rectangle.active {
+  z-index: 11;
+  opacity: 1;
+  transform: scale(0.9);
+}
+.rectangle.active .right img{
+  transform: rotate(20deg);
+  transition: transform 1s ease-in-out;
+}
+.rectangle .left{
+  width: 50%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  color: white;
+}
+.rectangle .left h4{
+  font-size: 40px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.rectangle .left p{
+  font-size: 16px;
+  margin: 10px 0;
+}
+.rectangle .left button{
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  background: rgb(251, 72, 72);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+.rectangle .left button:hover{
+  background: red;
+}
+.rectangle .right{
+  width: 50%;
+  height: 100%;
+  float: right;
+}
+.rectangle .right img{
+  width: 200px;
+  height: 250px;
+  position: absolute;
+  top: 20px;  
+  transform: translateX(50px);
+  transition: 1s ease-in-out;
+  overflow: hidden;
+  object-fit: contain;
+}
+.rectangle .right img:hover{
+  transform: rotate(0deg) ;
+}
+</style>
+</head>
+<body>
+  <div class="circle">
+    <div class="icons">
+      <img src="./download.png" alt="img of pepsi">
+      <h3>Pepsi</h3>
+    </div>
+  </div>
+  <div class="rectangle">
+    <div class="left">
+      <h4>Pepsi</h4>
+      <p>Pepsi is cool, refreshing drink that satisfies your thirst and delights your taste buds. Our secret blend of flavours.</p>
+      <button onclick="alert('Thanks for Buying Pepsi')">Shop Now</button>
+    </div>
+    <div class="right">
+      <img src="./WhatsApp Image 2025-12-27 at 8.37.58 PM.jpeg" alt="">
+    </div>
+  </div>
+
+<script>
+const circle = document.querySelector('.circle');
+const rectangle = document.querySelector('.rectangle');
+
+circle.addEventListener('mouseenter', () => {
+  if (!rectangle.classList.contains('active')) {
+    rectangle.classList.add('active');
+    circle.style.transform = 'scale(0)';
+  }
+});
+
+rectangle.addEventListener('mouseleave', () => {
+  rectangle.classList.remove('active');
+  circle.style.transform = 'scale(1)';
+});
+</script>
+</body>
+</html>
