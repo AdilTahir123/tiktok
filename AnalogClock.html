@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Live Digital Clock</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Live Digital Clock</title>
   <style>
     * {
       margin: 0;
@@ -12,8 +11,7 @@
       box-sizing: border-box;
       font-family: sans-serif;
     }
-    html,
-    body {
+    html, body {
       height: 100%;
       width: 100%;
       display: flex;
@@ -22,71 +20,70 @@
       background: #a3eea3;
     }
     .clock {
-      width: 600px;
-      height: 600px;
-      background: url("clock.png");
-      background-repeat: no-repeat;
-      background-size: cover;
+      width: 80vmin; /* responsive width */
+      height: 80vmin; /* responsive height */
+      max-width: 600px;
+      max-height: 600px;
+      background: url("clock.png") no-repeat center/cover;
       position: relative;
+      border-radius: 50%;
     }
-    .hour,
-    .minutes,
-    .second {
-      left: 50.3%;
+    .hand {
+      position: absolute;
+      left: 50%;
+      bottom: 50%;
       transform-origin: bottom center;
       transform: translateX(-50%);
       border-radius: 10px;
+      background: gray;
     }
     .hour {
-      width: 12px;
-      height: 100px;
-      background: gray;
-      position: absolute;
-      top: 190px;
+      width: 3%; /* relative to clock size */
+      height: 25%;
       z-index: 3;
     }
     .minutes {
-      width: 8px;
-      height: 140px;
-      background: gray;
-      position: absolute;
-      top: 156px;
+      width: 2%; 
+      height: 35%;
       z-index: 2;
     }
     .second {
-      width: 4px;
-      height: 187px;
-      background: gray;
+      width: 1%; 
+      height: 38%;
       z-index: 1;
-      position: absolute;
-      top: 113px;
-
+      background: red;
     }
   </style>
-  <body>
-    <div class="clock">
-      <div class="hour"></div>
-      <div class="minutes"></div>
-      <div class="second"></div>
-    </div>
-    <script>
-             let hour=   document.querySelector(".hour");
-        let minutes=document.querySelector(".minutes");
-          let second=document.querySelector(".second");
-          setInterval(() => {
-            let  d=new Date();
-             let  htime=d.getHours()%12;
-             let  mtime=d.getMinutes();
-             let stime=d.getSeconds();
-             let hrotation=30*htime+mtime/2;
-             let mrotation=6*mtime;
-             let srotation=6*stime;
+</head>
+<body>
+  <div class="clock">
+    <div class="hand hour"></div>
+    <div class="hand minutes"></div>
+    <div class="hand second"></div>
+  </div>
 
-             hour.style.transform=`translateX(-50%) rotate(${hrotation}deg)`;
-             minutes.style.transform=`translateX(-50%) rotate(${mrotation}deg)`;
-             second.style.transform=`translateX(-50%) rotate(${srotation}deg)`;
+  <script>
+    const hour = document.querySelector(".hour");
+    const minutes = document.querySelector(".minutes");
+    const second = document.querySelector(".second");
 
-          }, 1000);
-    </script>
-  </body>
+    function updateClock() {
+      const d = new Date();
+      const htime = d.getHours() % 12;
+      const mtime = d.getMinutes();
+      const stime = d.getSeconds();
+
+      const hrotation = 30 * htime + mtime / 2;
+      const mrotation = 5.7 * mtime;
+      const srotation = 6 * stime;
+
+      hour.style.transform = `translateX(-50%) rotate(${hrotation}deg)`;
+      minutes.style.transform = `translateX(-50%) rotate(${mrotation}deg)`;
+      second.style.transform = `translateX(-50%) rotate(${srotation}deg)`;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock(); // initial call
+  </script>
+</body>
 </html>
