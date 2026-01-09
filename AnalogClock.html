@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Digital Clock</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #a3eea3;
+    }
+    .clock {
+      width: 600px;
+      height: 600px;
+      background: url("/clock.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+    .hour,
+    .minutes,
+    .second {
+      left: 50.3%;
+      transform-origin: bottom center;
+      transform: translateX(-50%);
+      border-radius: 10px;
+    }
+    .hour {
+      width: 12px;
+      height: 100px;
+      background: gray;
+      position: absolute;
+      top: 190px;
+      z-index: 3;
+    }
+    .minutes {
+      width: 8px;
+      height: 140px;
+      background: gray;
+      position: absolute;
+      top: 156px;
+      z-index: 2;
+    }
+    .second {
+      width: 4px;
+      height: 187px;
+      background: gray;
+      z-index: 1;
+      position: absolute;
+      top: 113px;
+
+    }
+  </style>
+  <body>
+    <div class="clock">
+      <div class="hour"></div>
+      <div class="minutes"></div>
+      <div class="second"></div>
+    </div>
+    <script>
+             let hour=   document.querySelector(".hour");
+        let minutes=document.querySelector(".minutes");
+          let second=document.querySelector(".second");
+          setInterval(() => {
+            let  d=new Date();
+             let  htime=d.getHours()%12;
+             let  mtime=d.getMinutes();
+             let stime=d.getSeconds();
+             let hrotation=30*htime+mtime/2;
+             let mrotation=6*mtime;
+             let srotation=6*stime;
+
+             hour.style.transform=`translateX(-50%) rotate(${hrotation}deg)`;
+             minutes.style.transform=`translateX(-50%) rotate(${mrotation}deg)`;
+             second.style.transform=`translateX(-50%) rotate(${srotation}deg)`;
+
+          }, 1000);
+    </script>
+  </body>
+</html>
