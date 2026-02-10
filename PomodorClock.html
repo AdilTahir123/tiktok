@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family:sans-serif; 
+        }
+        html, body {
+          background: #dbeafe;
+        }
+        .container{
+            max-width: 500px;
+            width: 90%;
+            margin: 100px auto;
+            border-radius: 10px;
+            padding: 20px ;
+            background: hsl(240, 100%, 90%);;
+        }
+        .main{
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(220, 216, 216, 0.5);
+            background:rgb(246, 243, 243);
+            padding: 20px;
+            margin: auto;
+        }
+        h1{
+        padding-bottom: 30px;
+        }
+        .main span{
+            font-size: 50px;
+        }
+        button{
+            padding: 10px;
+            margin:50px 10px 0px ;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            color: white;
+        }
+        .b1{
+            background: green;
+        }
+        .b2{
+            background: red;
+        }
+        .b3{
+            background: gray;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <h1>Pomodoro Timer</h1>
+            <span>25:00</span>
+            <div class="btnGroup">
+                <button class="b1">START</button>
+                <button class="b2">STOP</button>
+                <button class="b3">RESET</button>
+            </div>
+        </div>
+    </div>
+    <script>
+  const display = document.querySelector(".main span");
+  const startBtn = document.querySelector(".b1");
+  const stopBtn  = document.querySelector(".b2");
+  const resetBtn = document.querySelector(".b3");
+
+  let totalSeconds = 25 * 60; // 25 minutes
+  let timer = null;
+
+  function updateDisplay() {
+    let minutes = Math.floor(totalSeconds / 60);
+    let seconds = totalSeconds % 60;
+    display.textContent =
+      String(minutes).padStart(2, "0") +
+      ":" +
+      String(seconds).padStart(2,'0');
+  }
+
+  startBtn.addEventListener("click", () => {
+    if (timer !== null) return; // already running
+
+    timer = setInterval(() => {
+      if (totalSeconds <= 0) {
+        clearInterval(timer);
+        timer = null;
+        alert("Pomodoro Complete 🎉");
+        return;
+      }
+      totalSeconds--;
+      updateDisplay();
+    }, 1000);
+  });
+
+  stopBtn.addEventListener("click", () => {
+    clearInterval(timer);
+    timer = null;
+  });
+
+  resetBtn.addEventListener("click", () => {
+    clearInterval(timer);
+    timer = null;
+    totalSeconds = 25 * 60;
+    updateDisplay();
+  });
+
+  updateDisplay(); // initial call
+</script>
+
+</body>
+</html>
