@@ -1,0 +1,212 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100vh;
+}
+
+body{
+    background:linear-gradient(135deg,#a8edea,#fed6e3);
+    color:#2d3748;
+}
+/* ================= NAVBAR ================= */
+nav{
+    width:100%;
+    padding: 15px;
+    background:linear-gradient(90deg,#667eea,#764ba2);
+    box-shadow:0 8px 20px rgba(102,126,234,.3);
+}
+
+nav ul{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+nav ul li{
+    list-style:none;
+    color:#fff;
+    font-size:2rem;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+    width:90%;
+    max-width:700px;
+    margin:45px auto;
+    padding:35px;
+
+    background:rgba(255,255,255,.88);
+    border-radius:25px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:25px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.15);
+}
+
+.container h1{
+    text-align:center;
+    color:#374151;
+}
+
+#player{
+    color:#ff4d6d;
+    font-weight:bold;
+}
+
+/* ================= GRID ================= */
+
+.boxes{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+/* ================= BOXES ================= */
+
+.boxes button{
+
+    width:105px;
+    height:105px;
+
+    border:none;
+    outline:none;
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+    color:#fff;
+    font-size:3rem;
+    font-weight:bold;
+
+    background:linear-gradient(135deg,#36d1dc,#5b86e5);
+
+    box-shadow:0 8px 20px rgba(91,134,229,.35);
+
+    transition:.3s;
+}
+
+.boxes button:hover:not(:disabled){
+
+    transform:translateY(-5px) scale(1.05);
+
+    box-shadow:0 15px 30px rgba(91,134,229,.45);
+}
+
+.boxes button:active:not(:disabled){
+    transform:scale(0.95);
+}
+
+.boxes button:disabled{
+    cursor:not-allowed;
+}
+
+/* ================= WINNER ================= */
+
+.winner{
+
+    background:linear-gradient(135deg,#00c853,#69f0ae)!important;
+
+    color:#fff;
+
+    box-shadow:
+        0 0 15px rgba(0,200,83,.6),
+        0 0 35px rgba(105,240,174,.45);
+
+    animation:winner .35s ease;
+}
+
+@keyframes winner{
+
+    from{
+        transform:scale(.7);
+    }
+
+    to{
+        transform:scale(1);
+    }
+}
+
+/* ================= RESET ================= */
+
+#reset{
+
+    padding:14px 35px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    color:#222;
+
+    font-size:1.15rem;
+    font-weight:bold;
+
+    background:linear-gradient(135deg,#f7971e,#ffd200);
+
+    box-shadow:0 8px 20px rgba(247,151,30,.35);
+
+    transition:.3s;
+}
+
+#reset:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 14px 28px rgba(247,151,30,.45);
+}
+
+#reset:active{
+    transform:scale(.95);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:550px){
+
+    .container{
+        padding:25px;
+    }
+
+    nav ul li{
+        font-size:1.6rem;
+    }
+
+    .container h1{
+        font-size:1.5rem;
+    }
+
+    .boxes{
+        gap:12px;
+    }
+
+    .boxes button{
+
+        width:80px;
+        height:80px;
+
+        font-size:2.2rem;
+    }
+
+    #reset{
+        width:100%;
+    }
+}
+

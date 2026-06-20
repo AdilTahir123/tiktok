@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+
+    <link rel="shortcut icon" href="./images/favicon.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header>
+      <h1>🪨 Rock Paper Scissors ✂️</h1>
+    </header>
+
+    <!-- Main -->
+    <main>
+      <!-- Top Section -->
+      <section class="upperPart">
+        <!-- User -->
+        <div class="left">
+          <div class="userChoice">
+            <img id="user-img" src="./images/paper.png" alt="User Choice" />
+            <h2>User Choice</h2>
+          </div>
+        </div>
+
+        <!-- Score -->
+        <div class="center">
+          <h2 id="score">Score : 0</h2>
+          <h3 id="result">Now your move</h3>
+        </div>
+
+        <!-- Computer -->
+        <div class="right">
+          <div class="computerChoice">
+            <img
+              id="computer-img"
+              src="./images/rock.png"
+              alt="Computer Choice"
+            />
+            <h2>Computer Choice</h2>
+          </div>
+        </div>
+      </section>
+
+      <!-- Choices -->
+      <section class="choices">
+        <div class="choice" data-choice="rock">
+          <img src="./images/rock.png" alt="Rock" />
+          <h3>Rock</h3>
+        </div>
+
+        <div class="choice" data-choice="paper">
+          <img src="./images/paper.png" alt="Paper" />
+          <h3>Paper</h3>
+        </div>
+
+        <div class="choice" data-choice="scissor">
+          <img src="./images/scissor.jpeg" alt="Scissor" />
+          <h3>Scissor</h3>
+        </div>
+      </section>
+
+      <!-- Reset Button -->
+      <button class="btn" id="reset-btn">🔄 Reset Game</button>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

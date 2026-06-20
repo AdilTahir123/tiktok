@@ -1,0 +1,351 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+body {
+    background: rgb(59, 222, 251);
+}
+
+/* ================= HEADER ================= */
+
+header {
+    /* background:#0f172a; */
+    background: linear-gradient(135deg, #3bdefb, #00c6ff);
+    color: #fff;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+/* ================= MAIN ================= */
+
+main {
+    width: 90%;
+    max-width: 1200px;
+    margin: 35px auto;
+}
+
+/* ================= TOP SECTION ================= */
+
+.upperPart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.left,
+.center,
+.right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.center {
+    flex-direction: column;
+    text-align: center;
+}
+
+.center h2 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.center h3 {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+/* ================= USER & COMPUTER ================= */
+
+.userChoice,
+.computerChoice {
+    width: 240px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 18px;
+    background: rgb(59, 222, 251);
+}
+
+.userChoice img,
+.computerChoice img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.userChoice h2,
+.computerChoice h2 {
+    margin-top: 10px;
+}
+
+/* ================= CHOICES ================= */
+
+.choices {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    flex-wrap: wrap;
+}
+
+.choice {
+    width: 220px;
+    padding: 18px;
+    border-radius: 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    background: rgb(59, 222, 251);
+}
+
+.choice:hover {
+    transform: translateY(-8px) scale(1.05);
+}
+
+.choice img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    transition: 0.3s;
+}
+
+.choice:hover img {
+    transform: scale(1.08);
+}
+
+.choice h3 {
+    margin-top: 10px;
+    font-size: 1.3rem;
+}
+
+/* ================= BUTTON ================= */
+
+.btn {
+    display: block;
+    margin: 40px auto 0;
+    padding: 15px 45px;
+    border: none;
+    border-radius: 50px;
+    background: #00a2ff;
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #2563eb;
+    transform: scale(1.05);
+}
+
+.center h3 {
+    color: #ef4444;
+    padding: 10px;
+
+    background: rgb(246, 241, 241);
+}
+
+#result {
+    width: 225px;
+    margin: 0px auto;
+}
+
+/* ================= 895px ================= */
+
+@media (max-width: 895px) {
+    .upperPart {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .center {
+        grid-column: 1/3;
+        order: -1;
+    }
+
+    .left,
+    .right {
+        justify-content: center;
+    }
+
+    .userChoice,
+    .computerChoice {
+        width: 170px;
+        padding: 12px;
+    }
+
+    .userChoice img,
+    .computerChoice img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .center h2 {
+        font-size: 1.6rem;
+    }
+
+    .center h3 {
+        font-size: 1rem;
+        width: 160px;
+        margin: auto;
+    }
+
+    .choices {
+        gap: 20px;
+    }
+
+    .choice {
+        width: 160px;
+        padding: 12px;
+    }
+
+    .choice img {
+        width: 140px;
+        height: 140px;
+    }
+
+    .choice h3 {
+        font-size: 1rem;
+    }
+}
+
+/* ================= 600px ================= */
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    .upperPart {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* .userChoice,
+    .computerChoice{
+        width:150px;
+        padding:10px;
+    } */
+    /* 
+    .userChoice img,
+    .computerChoice img{
+        width:60px;
+        height:60px;
+    } */
+
+    /* .choices{
+        gap:12px;
+    } */
+
+    .choice {
+        width: 120px;
+        padding: 8px;
+    }
+
+    .choice img {
+        width: 90px;
+        height: 90px;
+    }
+
+    /* .choice h3{
+        display:none;
+    } */
+
+    .center h2 {
+        font-size: 1.43rem;
+    }
+
+    .center h3 {
+        font-size: 1.3rem;
+        padding: 2px;
+    }
+
+    .btn {
+        width: 90%;
+        padding: 14px;
+        font-size: 1rem;
+        margin-top: 20px;
+    }
+}
+
+/* ================= 400px ================= */
+
+@media (max-width: 400px) {
+    header h1 {
+        font-size: 1.3rem;
+    }
+
+    .userChoice,
+    .computerChoice {
+        width: 130px;
+    }
+
+    .userChoice img,
+    .computerChoice img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .choice {
+        width: 95px;
+    }
+
+    .choice img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .center h2 {
+        font-size: 1.2rem;
+    }
+
+    .center h3 {
+        font-size: 0.8rem;
+    }
+}
+
+/* Animation */
+/* ===========================
+   Image Rotation Animation
+=========================== */
+
+.rotate {
+    animation: rotateChoice 0.6s ease-in-out;
+}
+
+@keyframes rotateChoice {
+    0% {
+        transform: rotate(0deg) scale(0.6);
+        opacity: 0;
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+        opacity: 1;
+    }
+}
