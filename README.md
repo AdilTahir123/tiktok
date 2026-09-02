@@ -24,6 +24,7 @@ A collection of multiple frontend UI projects built using HTML, CSS, and JavaScr
 - Tabs
 - WhatsApp UI
 - TikTok-inspired UI
+- And More.....
 
 ## 📚 About This Project
 
